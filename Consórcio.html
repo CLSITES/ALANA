@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promoção Revemar - Fácil de Aprovar</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    /* --- CONFIGURAÇÕES TEMA: FÁCIL DE APROVAR, FÁCIL DE LEVAR --- */
+    :root {
+        --honda-red: #e30613;
+        --promo-yellow: #ffcc00;
+        --promo-gold: #ffaa00;
+        --dark-bg: #1a0000;
+        --whatsapp-green: #25d366;
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+        /* Fundo gradiente inspirado no panfleto da campanha */
+        background: radial-gradient(circle at top, #ff4d4d 0%, #800000 50%, var(--dark-bg) 100%);
+        min-height: 100vh;
+        padding: 20px;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-wrapper {
+        width: 100%;
+        max-width: 600px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* --- LOGO DA CAMPANHA --- */
+    .logo-top {
+        display: block;
+        margin: 0 auto 20px auto;
+        width: clamp(200px, 60vw, 320px);
+        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+    }
+
+    /* --- ESTILO DOS CARDS --- */
+    .card {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        padding: clamp(20px, 5vw, 30px);
+        border-radius: 24px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        margin-bottom: 25px;
+        position: relative;
+        border: 2px solid var(--promo-yellow);
+    }
+
+    /* Faixa superior temática */
+    .card::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 8px;
+        background: linear-gradient(90deg, var(--promo-yellow), var(--honda-red), var(--promo-yellow));
+        border-radius: 20px 20px 0 0;
+    }
+
+    h2 {
+        margin: 10px 0 20px;
+        font-size: clamp(1.2rem, 5vw, 1.5rem);
+        text-align: center;
+        text-transform: uppercase;
+        /* Texto em gradiente vermelho/escuro */
+        background: linear-gradient(180deg, var(--honda-red), #800000);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+    .moto-name {
+        font-weight: 800;
+        font-size: clamp(1rem, 4vw, 1.3rem);
+        margin-bottom: 25px;
+        color: #fff;
+        text-align: center;
+        background: linear-gradient(90deg, #cc0000, var(--honda-red));
+        padding: 12px 20px;
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(227, 6, 19, 0.4);
+        text-transform: uppercase;
+        border: 1px solid var(--promo-yellow);
+    }
+
+    /* --- FORMULÁRIO --- */
+    label {
+        font-weight: 700;
+        margin-top: 15px;
+        display: block;
+        font-size: 13px;
+        color: #500;
+        text-transform: uppercase;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        border: 2px solid #f0e0e0;
+        margin-top: 6px;
+        font-size: 16px;
+        background: #fff;
+        font-family: 'Montserrat', sans-serif;
+        box-sizing: border-box;
+        transition: 0.3s;
+    }
+
+    input:focus {
+        border-color: var(--honda-red);
+        outline: none;
+        background: #fffcf0;
+    }
+
+    /* Bordas laterais seguindo o novo tema */
+    input[name="nome"] { border-left: 6px solid var(--honda-red); }
+    input[name="cpf"] { border-left: 6px solid var(--promo-yellow); }
+    select[name="plano"] { border-left: 6px solid var(--honda-red); }
+    input[name="parcelaIdeal"] { border-left: 6px solid var(--promo-yellow); }
+
+    /* Botão WhatsApp - Grande e Chamativo */
+    button {
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(45deg, #1bd741, #25d366, #1bd741);
+        background-size: 200% auto;
+        border: none;
+        margin-top: 25px;
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: 900;
+        color: white;
+        cursor: pointer;
+        text-transform: uppercase;
+        box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5);
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+        100% { transform: scale(1); }
+    }
+
+    /* --- CARROSSEL --- */
+    .carousel {
+        width: 100%;
+        height: 240px;
+        overflow: hidden;
+        border-radius: 16px;
+        background: #fff;
+        border: 1px solid #eee;
+    }
+
+    .carousel-track {
+        display: flex;
+        width: max-content;
+        animation: scroll 25s linear infinite;
+    }
+
+    .carousel-track img {
+        height: 240px;
+        width: auto;
+        min-width: 300px;
+        object-fit: contain;
+        padding: 10px;
+    }
+
+    @keyframes scroll {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    /* Badge de "Revemar Motocenter" no rodapé */
+    .footer-brand {
+        text-align: center;
+        color: white;
+        margin-top: 10px;
+        font-size: 12px;
+        font-weight: 600;
+        opacity: 0.8;
+    }
+</style>
+</head>
+<body>
+
+<div class="main-wrapper">
+    <img src="https://www.image2url.com/r2/default/images/1776105740628-4fed2248-a3cd-4d4a-b028-56829cbbf3e4.blob" alt="Promoção Fácil de Aprovar" class="logo-top">
+
+    <div class="card">
+        <h2 id="tituloMoto">Escolha sua Honda</h2>
+        <div class="carousel">
+            <div class="carousel-track" id="carouselTrack"></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Simulação Imediata</h2>
+        <p class="moto-name" id="motoEscolhida"></p>
+
+        <form id="consForm">
+            <label>Nome completo *</label>
+            <input name="nome" placeholder="Seu nome" required>
+
+            <label>CPF *</label>
+            <input name="cpf" placeholder="000.000.000-00" id="cpfInput" required>
+
+            <label>Plano sugerido *</label>
+            <select name="plano" id="planoSelect" required></select>
+
+            <label>Pressa para pegar a moto? *</label>
+            <select name="pressa" required>
+                <option value="">Selecione...</option>
+                <option>Quero o quanto antes!</option>
+                <option>Posso aguardar</option>
+            </select>
+
+            
+
+            <input type="hidden" name="moto" id="motoInput">
+            <button type="submit">✅ ENCAMINHAR</button>
+        </form>
+    </div>
+    
+    <div class="footer-brand">
+        REVEMAR MOTOCENTER - APAIXONADOS POR MOTOS
+    </div>
+</div>
+
+<script>
+// Mantive sua lista de motos e a lógica original, apenas ajustei a mensagem do WhatsApp
+const motos = [
+    { id:'CG160FAN', nome:'CG 160 FAN', imgs:['https://www.honda.com.br/motos/sites/hda/files/2025-08/visao-frontal-da-lateral-direita-da-honda-cg-160-fan.webp','https://www.honda.com.br/motos/sites/hda/files/2025-08/farol-da-moto-honda-cg-160-fan-.webp'], parcelas:{36:791.58,48:600.84,60:487.80,80:376.62} },
+    { id:'POP110', nome:'POP 110i ES', imgs:['https://www.honda.com.br/motos/sites/hda/files/2024-04/design-detalhes-laterais-da-pop-110i-es_0.webp'], parcelas:{36:448.60,48:340.51,60:276.44,80:213.44} },
+    { id:'CG160TITAN', nome:'CG 160 TITAN', imgs:['https://www.honda.com.br/motos/sites/hda/files/2025-08/visao-frontal-da-lateral-direita-da-honda-cg-160-titan.webp'], parcelas:{36:841.45,48:638.70,60:518.54,80:400.35} },
+    { id:'BIZ125ES', nome:'BIZ 125 ES', imgs:['https://www.honda.com.br/motos/sites/hda/files/2024-08/nova-carenagem-honda-biz-125-es_1560x624.webp'], parcelas:{36:566.13,48:429.72,60:348.88,80:269.36} },
+    { id:'NXR160ABS', nome:'NXR 160 BROS ABS', imgs:['https://www.honda.com.br/motos/sites/hda/files/2025-07/Bros-Cinza-3_4FD-ABS.webp'], parcelas:{36:947.23,48:718.99,60:583.73,80:450.68} },
+    { id:'XR300LT', nome:'XR 300L TORNADO', imgs:['https://www.honda.com.br/motos/sites/hda/files/2024-09/XR_300L_Tornado_R5-356_1644x768Design_2.webp'], parcelas:{36:1237.55,48:939.36,60:762.64,80:588.81} },
+    { id:'ELITE125', nome:'ELITE 125', imgs:['https://www.honda.com.br/motos/sites/hda/files/2024-05/honda-elite-125-tecnologia-luz-de-presenca-e-farol-de-led.webp'], parcelas:{36:587.20,48:445.71,60:361.86,80:279.38} }
+];
+
+const params = new URLSearchParams(location.search);
+const moto = motos.find(m => m.id === params.get('moto')) || motos[0];
+
+document.getElementById('tituloMoto').innerText = moto.nome;
+document.getElementById('motoEscolhida').innerText = moto.nome;
+document.getElementById('motoInput').value = moto.nome;
+
+const track = document.getElementById('carouselTrack');
+track.innerHTML = [...moto.imgs, ...moto.imgs].map(img => `<img src="${img}">`).join('');
+
+const planoSelect = document.getElementById('planoSelect');
+Object.entries(moto.parcelas).forEach(([p,v])=>{
+    const opt=document.createElement('option');
+    opt.value=p;
+    opt.textContent=`${p} meses de R$ ${v.toFixed(2)}`;
+    planoSelect.appendChild(opt);
+});
+
+document.getElementById('consForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(e.target));
+    const msg = `*SIMULAÇÃO CONSÓRCIO REVEMAR*\n\n*Moto:* ${d.moto}\n*Nome:* ${d.nome}\n*CPF:* ${d.cpf}\n*Plano:* ${d.plano}x\n*Tem pressa:* ${d.pressa}`;
+    location.href = `https://wa.me/5594991050728?text=${encodeURIComponent(msg)}`;
+});
+</script>
+
+</body>
+</html>
